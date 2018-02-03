@@ -6,7 +6,11 @@ Rails.application.routes.draw do
         patch :moderate
       end
       scope module: :articles do
-        resources :comments
+        resources :comments do
+          scope module: :comments do
+            resources :likes
+          end
+        end
       end
     end
     namespace :moderation do

@@ -1,5 +1,6 @@
 class Article
   class Comment < ApplicationRecord
-    belongs_to :article, class_name: 'Article'
+    belongs_to :article
+    has_many :likes, dependent: :destroy
   end
 end
