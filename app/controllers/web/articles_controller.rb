@@ -1,5 +1,5 @@
 class Web::ArticlesController < Web::ApplicationController
-
+  # before_action :find_resource, except: %i[index edit new]
   # http_basic_authenticate_with name: "viraj", password: "password", except: [:index, :show]
 
   def index
@@ -45,8 +45,17 @@ class Web::ArticlesController < Web::ApplicationController
     redirect_to articles_path
   end
 
+  def moderate
+    @article.send_to_moderation!
+    redirect_to @article
+  end
+
   private
+
+  def find_resource
+    @article ||= Article.find(params[:id])
+  end
   def article_params
-    params.require(:article).permit(:title, :text)
+    params.require(:article).permit(:title, :text, links_attributes: [:id, :url, :destroy])
   end
 end

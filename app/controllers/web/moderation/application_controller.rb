@@ -1,9 +1,9 @@
 module Web
-  module Articles
+  module Moderation
     class ApplicationController < Web::ApplicationController
       def find_resource
-        @article ||= Article.find(params[:article_id])
+        # @article = ::ModerateArticleType.find(params[:id])
       end
-    end
+    end 
   end
 end

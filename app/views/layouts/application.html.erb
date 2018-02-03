@@ -9,6 +9,10 @@
   </head>
 
   <body>
+    <nav>
+      <%= link_to "Articles", articles_path %>
+      <%= link_to "Moderation", moderation_articles_path %>
+    </nav>
     <%= yield %>
   </body>
 </html>

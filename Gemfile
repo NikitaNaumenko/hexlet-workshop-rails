@@ -32,9 +32,15 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'state_machines'
-
-
+# gem 'state_machines'
+gem 'state_machines-activerecord'
+gem 'ransack'
+gem 'minitest-power_assert'
+gem 'slim-rails'
+gem 'simple_form'
+gem 'reform-rails'
+gem 'jquery-rails'
+gem 'cocoon'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
