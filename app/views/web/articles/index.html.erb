@@ -10,8 +10,7 @@
     <tr>
       <td><%= article.title %></td>
       <td><%= article.text %></td>
-      <%# Yes, i know that it n+1 query %>
-      <td><%= article.comments.joins(:likes).count %></td>
+      <td><%= @likes_count[article.id] %></td>
       <td><%= link_to 'Show', article_path(article) %></td>
       <td><%= link_to 'Edit', edit_article_path(article) %></td>
       <td><%= link_to 'Destroy', article_path(article),

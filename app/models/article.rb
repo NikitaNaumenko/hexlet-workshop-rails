@@ -1,9 +1,11 @@
 class Article < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :links
+  has_many :likes, class_name: 'Article::Comment::Like'
   belongs_to :category, required: false
   validates :title, presence: true,
                     length: { minimum: 5 }
+  scope :count_likes, -> { left_joins(:likes).group('article_comment_likes.article_id').count }
   state_machine :state, initial: :draft do
     state :draft
     state :on_moderation

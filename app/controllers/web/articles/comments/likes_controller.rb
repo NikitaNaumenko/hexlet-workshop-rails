@@ -2,22 +2,23 @@ module Web
   module Articles
     module Comments
       class LikesController < Web::Articles::Comments::ApplicationController
-        before_action :find_comment, only: :create
         def create
           if validation.success?
-            resource_comment.likes.create
+            LikeMutator.create!(resource_comment, permitted_params)
             redirect_to resource_article
           else
             redirect_to resource_article, notice: validation.errors
           end
         end
 
-        private
-        
-        def create_validation
-          ::Articles::Comments::Likes::CreateSchema.
-            with(comment: @comment).
-            call(comment_id: params[:comment_id], likes_count: 5)
+        private 
+
+        def permitted_params
+          params.permit(:article_id)
+        end
+
+        def validation
+          LikeMutator.validate(resource_comment)
         end
       end
     end

@@ -4,6 +4,7 @@ class Web::ArticlesController < Web::ApplicationController
 
   def index
     @articles = Article.all
+    @likes_count = Article.count_likes
   end
 
   def show

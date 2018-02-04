@@ -6,13 +6,12 @@ module Articles
           config.namespace = :likes
           option :comment
 
-          def time_and_count_restraint?(likes_count)
-            comment.likes.desc_ordered.time_restraint.count < likes_count
+          def time_and_count_restraint?(likes_count_per_hour)
+            comment.likes.desc_ordered.time_restraint.count < likes_count_per_hour
           end
         end
 
-        required(:comment_id).filled
-        required(:likes_count).filled(:time_and_count_restraint?)
+        required(:likes_count_per_hour).filled(:time_and_count_restraint?)
       end
     end
   end
