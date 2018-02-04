@@ -14,7 +14,7 @@ module Web
 
         private
         
-        def validation
+        def create_validation
           ::Articles::Comments::Likes::CreateSchema.
             with(comment: @comment).
             call(comment_id: params[:comment_id], likes_count: 5)
