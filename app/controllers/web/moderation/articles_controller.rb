@@ -13,7 +13,6 @@ module Web
       end
 
       def update
-
         @article = ModerateArticleType.find(params[:id])
         if @article.update(article_params)
           redirect_to moderation_articles_path

@@ -1,7 +1,7 @@
 module Web
   module Articles
     class ApplicationController < Web::ApplicationController
-      def find_resource
+      def resource_article
         @article ||= Article.find(params[:article_id])
       end
     end

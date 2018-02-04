@@ -1,18 +1,15 @@
 class Web::Articles::CommentsController < Web::Articles::ApplicationController
-  before_action :find_resource
-  http_basic_authenticate_with name: "viraj", password: "password", only: :destroy
+  # http_basic_authenticate_with name: "viraj", password: "password", only: :destroy
 
   def create
-    # @article = Article.find(params[:article_id])
-    @comment = @article.comments.create(comment_params)
-    redirect_to article_path(@article)
+    @comment = resource_article.comments.create(comment_params)
+    redirect_to article_path(resource_article)
   end
 
   def destroy
-    # @article = Article.find(params[:article_id])
-    @comment = @article.comments.find(params[:id])
+    @comment = resource_article.comments.find(params[:id])
     @comment.destroy
-    redirect_to article_path(@article)
+    redirect_to article_path(resource_article)
   end
 
   private
